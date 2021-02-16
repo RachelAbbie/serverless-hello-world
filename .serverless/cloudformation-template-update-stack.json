@@ -161,7 +161,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-hello-world/dev/1613470222711-2021-02-16T10:10:22.711Z/serverless-hello-world.zip"
+          "S3Key": "serverless/serverless-hello-world/dev/1613470875763-2021-02-16T10:21:15.763Z/serverless-hello-world.zip"
         },
         "Handler": "handler.hello",
         "Runtime": "nodejs12.x",
@@ -179,14 +179,14 @@
         "HelloLogGroup"
       ]
     },
-    "HelloLambdaVersionrn7VUUHwDi0exrk4bKV6EoEXfk4WIsEplHqf4eTz0": {
+    "HelloLambdaVersionVhwxhmLxTCyFKe6KcAKDzc4v0b0Fj8RO2ILqzRZfI14": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "fxfH8flJDwp5qKZShwvwb8Ts0M2ZMuAaKV4IaNxLHLM="
+        "CodeSha256": "pmP41NWWMZrgK/pVoJCQgdAD2TknM+48I7GhrmzhDx0="
       }
     },
     "ApiGatewayRestApi": {
@@ -216,25 +216,13 @@
         }
       }
     },
-    "ApiGatewayResourceHelloNameVar": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceHello"
-        },
-        "PathPart": "{name}",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
-      }
-    },
-    "ApiGatewayMethodHelloNameVarGet": {
+    "ApiGatewayMethodHelloGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "GET",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceHelloNameVar"
+          "Ref": "ApiGatewayResourceHello"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -271,7 +259,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1613470220475": {
+    "ApiGatewayDeployment1613470873518": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -280,7 +268,7 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodHelloNameVarGet"
+        "ApiGatewayMethodHelloGet"
       ]
     },
     "HelloLambdaPermissionApiGateway": {
@@ -330,7 +318,7 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionrn7VUUHwDi0exrk4bKV6EoEXfk4WIsEplHqf4eTz0"
+        "Ref": "HelloLambdaVersionVhwxhmLxTCyFKe6KcAKDzc4v0b0Fj8RO2ILqzRZfI14"
       }
     },
     "ServiceEndpoint": {

@@ -9,11 +9,10 @@ provider:
   apiGateway: 
     shouldStartNameWithService: true
 
-    
 functions:
   hello:
     handler: handler.hello
     events:
       - http:
           method: get
-          path: hello/{name}
+          path: hello
