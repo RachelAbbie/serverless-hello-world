@@ -178,7 +178,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-hello-world/dev/1613467836763-2021-02-16T09:30:36.763Z/serverless-hello-world.zip"
+                "S3Key": "serverless/serverless-hello-world/dev/1613468805264-2021-02-16T09:46:45.264Z/serverless-hello-world.zip"
               },
               "Handler": "handler.hello",
               "Runtime": "nodejs12.x",
@@ -196,14 +196,14 @@
               "HelloLogGroup"
             ]
           },
-          "HelloLambdaVersionJ12f4S6RxMlNWolwVMB8IXBjZ32baDwks1sziukHuM": {
+          "HelloLambdaVersionrn7VUUHwDi0exrk4bKV6EoEXfk4WIsEplHqf4eTz0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "SjrHFqs0APSh0409sRz8v8RgTDBLXiO0JWFwDhWyaAQ="
+              "CodeSha256": "fxfH8flJDwp5qKZShwvwb8Ts0M2ZMuAaKV4IaNxLHLM="
             }
           },
           "ApiGatewayRestApi": {
@@ -233,13 +233,25 @@
               }
             }
           },
-          "ApiGatewayMethodHelloGet": {
+          "ApiGatewayResourceHelloNameVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceHello"
+              },
+              "PathPart": "{name}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodHelloNameVarGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceHello"
+                "Ref": "ApiGatewayResourceHelloNameVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -276,7 +288,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1613467835443": {
+          "ApiGatewayDeployment1613468803169": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -285,7 +297,7 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodHelloGet"
+              "ApiGatewayMethodHelloNameVarGet"
             ]
           },
           "HelloLambdaPermissionApiGateway": {
@@ -335,7 +347,7 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionJ12f4S6RxMlNWolwVMB8IXBjZ32baDwks1sziukHuM"
+              "Ref": "HelloLambdaVersionrn7VUUHwDi0exrk4bKV6EoEXfk4WIsEplHqf4eTz0"
             }
           },
           "ServiceEndpoint": {
@@ -455,7 +467,7 @@
           {
             "http": {
               "method": "get",
-              "path": "hello",
+              "path": "hello/{name}",
               "integration": "AWS_PROXY"
             }
           }
@@ -466,7 +478,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionJ12f4S6RxMlNWolwVMB8IXBjZ32baDwks1sziukHuM"
+        "versionLogicalId": "HelloLambdaVersionrn7VUUHwDi0exrk4bKV6EoEXfk4WIsEplHqf4eTz0"
       }
     },
     "configValidationMode": "warn",
@@ -488,7 +500,7 @@
     "artifact": "C:\\Users\\rfernando8\\Desktop\\Learnings\\Serverless AWS\\serverless-hello-world\\.serverless\\serverless-hello-world.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-hello-world/dev/1613467836763-2021-02-16T09:30:36.763Z",
+    "artifactDirectoryName": "serverless/serverless-hello-world/dev/1613468805264-2021-02-16T09:46:45.264Z",
     "artifact": "serverless-hello-world.zip"
   }
 }
